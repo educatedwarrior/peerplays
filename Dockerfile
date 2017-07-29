@@ -30,6 +30,8 @@ ENV NODE_TYPE=test
 ENV LANG=en_US.UTF-8
 ENV WORKDIR /opt/peerplays/bin
 ENV DATADIR /opt/peerplays/bin/witness_node_data_dir
+ENV LOGDIR /opt/peerplays/bin/witness_node_data_dir/logs
+
 ENV TEST_SEED 192.34.60.157:29092
 ENV PROD_SEED 213.184.225.234:59500
 
