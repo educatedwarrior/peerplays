@@ -37,7 +37,7 @@ if [ "${NODE_TYPE}" = "prod" ]; then
 		--rpc-endpoint=127.0.0.1:8090 \
 		--p2p-endpoint=0.0.0.0:9777 \
 		--genesis-json ${DATADIR}/genesis.json \
-		-d ${DATADIR}/ > ${LOGDIR}/node.log 2>&1
+		-d ${DATADIR}/ 
 	  else
 	  	echo "Starting daemon in PROD.  Replaying blockchain"
 	    cp /genesis.json ${DATADIR}
@@ -46,7 +46,7 @@ if [ "${NODE_TYPE}" = "prod" ]; then
 		--rpc-endpoint=127.0.0.1:8090 \
 		--p2p-endpoint=0.0.0.0:9777 \
 		--genesis-json ${DATADIR}/genesis.json \
-		-d ${DATADIR}/ > ${LOGDIR}/node.log 2>&1
+		-d ${DATADIR}/ 
 	fi
 
 fi
