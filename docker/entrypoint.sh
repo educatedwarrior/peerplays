@@ -33,20 +33,20 @@ if [ "${NODE_TYPE}" = "prod" ]; then
 	if [ -f "${DATADIR}/genesis.json" ]
 	  then
 	    echo "Starting daemon in PROD"
-	    exec nohup witness_node -s ${PROD_SEED} \
+	    exec witness_node -s ${PROD_SEED} \
 		--rpc-endpoint=127.0.0.1:8090 \
 		--p2p-endpoint=0.0.0.0:9777 \
 		--genesis-json ${DATADIR}/genesis.json \
-		-d ${DATADIR}/ > ${LOGDIR}/node.log
+		-d ${DATADIR}/ > ${LOGDIR}/node.log 2>&1
 	  else
 	  	echo "Starting daemon in PROD.  Replaying blockchain"
 	    cp /genesis.json ${DATADIR}
-		exec nohup witness_node -s ${PROD_SEED} \
+		exec witness_node -s ${PROD_SEED} \
 		--replay-blockchain \
 		--rpc-endpoint=127.0.0.1:8090 \
 		--p2p-endpoint=0.0.0.0:9777 \
 		--genesis-json ${DATADIR}/genesis.json \
-		-d ${DATADIR}/ > ${LOGDIR}/node.log
+		-d ${DATADIR}/ > ${LOGDIR}/node.log 2>&1
 	fi
 
 fi
