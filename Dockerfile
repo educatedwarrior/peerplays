@@ -36,7 +36,7 @@ ENV TEST_SEED 192.34.60.157:29092
 ENV PROD_SEED 213.184.225.234:59500
 
 LABEL org.freenas.interactive="false"       \
-      org.freenas.version="1.59.1.0001"      \
+      org.freenas.version="1.59.1.0002"      \
       org.freenas.upgradeable="true"        \
       org.freenas.expose-ports-at-host="true"   \
       org.freenas.autostart="true"      \
