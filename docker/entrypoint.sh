@@ -34,8 +34,7 @@ if [ "${NODE_TYPE}" = "prod" ]; then
 	  then
 	    echo "Starting daemon in PROD"
 	    exec witness_node -s ${PROD_SEED} \
-		--rpc-endpoint=127.0.0.1:8090 \
-		--p2p-endpoint=0.0.0.0:9777 \
+		--rpc-endpoint=0.0.0.0:8090 \
 		--genesis-json ${DATADIR}/genesis.json \
 		-d ${DATADIR}/ 
 	  else
@@ -43,8 +42,7 @@ if [ "${NODE_TYPE}" = "prod" ]; then
 	    cp /genesis.json ${DATADIR}
 		exec witness_node -s ${PROD_SEED} \
 		--replay-blockchain \
-		--rpc-endpoint=127.0.0.1:8090 \
-		--p2p-endpoint=0.0.0.0:9777 \
+		--rpc-endpoint=0.0.0.0:8090 \
 		--genesis-json ${DATADIR}/genesis.json \
 		-d ${DATADIR}/ 
 	fi

@@ -88,7 +88,7 @@ COPY genesis.json /
 COPY /docker/entrypoint.sh /sbin
 RUN cd "$WORKDIR" && chmod +x /sbin/entrypoint.sh
 VOLUME "$DATADIR"
-EXPOSE 8090 9090
+EXPOSE 8090
 CMD ["/sbin/entrypoint.sh"]
 
 
