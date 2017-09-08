@@ -76,11 +76,14 @@ RUN \
 	cmake -DBOOST_ROOT="$BOOST_ROOT" -DCMAKE_BUILD_TYPE=Release . && \
 	make witness_node cli_wallet
 
-# Make binary builds available for general-system wide use 
+# Make binary builds available for general-system wide use , and clean up
 RUN \
 	cp /tmp/peerplays/programs/witness_node/witness_node /usr/bin/witness_node && \
 	cp /tmp/peerplays/programs/cli_wallet/cli_wallet /usr/bin/cli_wallet
-
+	&& apt-get autoremove -y \
+	&& apt-get clean \
+	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+  
 RUN mkdir -p "$DATADIR"
 #COPY /docker/default_config.ini genesis-test.json genesis.json /
 COPY /docker/default_config.ini /config.ini
