@@ -25,14 +25,16 @@ FROM educatedwarrior/invictus_image:1.59
 MAINTAINER educatedwarrior 
 
 # Configuration variables
-#test or prod for NODE_TYPE
-ENV NODE_TYPE=test
+#witness or seed for NODE_TYPE`
+#test or prod for ENVIRONMENT
+ENV NODE_TYPE=witness
+ENV ENVIRONMENT=test
 ENV LANG=en_US.UTF-8
 ENV WORKDIR /opt/peerplays/bin
 ENV DATADIR /opt/peerplays/bin/witness_node_data_dir
 ENV LOGDIR /opt/peerplays/bin/witness_node_data_dir/logs
 
-ENV TEST_SEED 192.34.60.157:29092
+ENV TEST_SEED seed.ppytest.blckchnd.com:7778 
 ENV PROD_SEED 213.184.225.234:59500
 
 LABEL org.freenas.interactive="false"       \
@@ -68,7 +70,7 @@ LABEL org.freenas.interactive="false"       \
           }                            \
       ]"
 
-#Build blockchain source
+#Build blockchain source for PROD
 RUN \
 	cd /tmp && git clone https://github.com/pbsa/peerplays.git && \
 	cd peerplays && \
@@ -76,22 +78,34 @@ RUN \
 	cmake -DBOOST_ROOT="$BOOST_ROOT" -DCMAKE_BUILD_TYPE=Release . && \
 	make witness_node cli_wallet
 
-# Make binary builds available for general-system wide use , and clean up
+#Build blockchain source for TEST 
 RUN \
-	cp /tmp/peerplays/programs/witness_node/witness_node /usr/bin/witness_node && \
-	cp /tmp/peerplays/programs/cli_wallet/cli_wallet /usr/bin/cli_wallet
-	&& apt-get autoremove -y \
-	&& apt-get clean \
-	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+        cd /tmp/testbuild && git clone https://github.com/ppytest/peerplays.git && \
+	cd peerplays && \
+	git submodule update --init --recursive && \
+	cmake -DBOOST_ROOT="$BOOST_ROOT" -DCMAKE_BUILD_TYPE=Release . && \
+	make witness_node cli_wallet
+
+
+# Make binary builds available for general-system wide use , and clean up
+#RUN \
+#	cp /tmp/peerplays/programs/witness_node/witness_node /usr/bin/witness_node && \
+#	cp /tmp/peerplays/programs/cli_wallet/cli_wallet /usr/bin/cli_wallet 
+	
+# Cleanup	
+#RUN \	
+	#apt-get autoremove -y \
+	#&& apt-get clean \
+	#&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
   
 RUN mkdir -p "$DATADIR"
-#COPY /docker/default_config.ini genesis-test.json genesis.json /
-COPY /docker/default_config.ini /config.ini
-COPY genesis.json /
+RUN touch genesis-test.json
+RUN touch genesis.json
+COPY genesis-test.json genesis.json /
+COPY /docker/prod_config.ini /
+COPY /docker/test_config.ini /
 COPY /docker/entrypoint.sh /sbin
 RUN cd "$WORKDIR" && chmod +x /sbin/entrypoint.sh
 VOLUME "$DATADIR"
 EXPOSE 8090
 CMD ["/sbin/entrypoint.sh"]
-
-
