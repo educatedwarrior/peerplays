@@ -4,8 +4,9 @@ cd ${WORKDIR}
 # If config file does not exist, copy over default environmental configuration template 
 if [ -f "${DATADIR}/config.ini" ]
   then
-    echo
+    echo "Node config.ini found"
   else
+  	echo "Node config.ini not found.  Copying default version"
   	if [ ${ENVIRONMENT} = "test"] 
   	  then
    		cp /test_config.ini ${DATADIR}/config.ini
