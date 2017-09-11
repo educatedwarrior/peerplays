@@ -72,7 +72,8 @@ LABEL org.freenas.interactive="false"       \
 
 #Build blockchain source for PROD
 RUN \
-	cd /tmp && git clone https://github.com/pbsa/peerplays.git && \
+	cd /tmp && \
+  git clone https://github.com/pbsa/peerplays.git && \
 	cd peerplays && \
 	git submodule update --init --recursive && \
 	cmake -DBOOST_ROOT="$BOOST_ROOT" -DCMAKE_BUILD_TYPE=Release . && \
@@ -81,7 +82,8 @@ RUN \
 #Build blockchain source for TEST 
 RUN \
   mkdir /tmp/testbuild && \
-  cd /tmp/testbuild && git clone https://github.com/ppytest/peerplays.git && \
+  cd /tmp/testbuild && \
+  git clone -b testnet-draft https://github.com/ppytest/peerplays.git && \
 	cd peerplays && \
 	git submodule update --init --recursive && \
 	cmake -DBOOST_ROOT="$BOOST_ROOT" -DCMAKE_BUILD_TYPE=Release . && \
