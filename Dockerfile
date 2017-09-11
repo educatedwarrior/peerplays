@@ -80,7 +80,8 @@ RUN \
 
 #Build blockchain source for TEST 
 RUN \
-        cd /tmp/testbuild && git clone https://github.com/ppytest/peerplays.git && \
+  mkdir /tmp/testbuild && \
+  cd /tmp/testbuild && git clone https://github.com/ppytest/peerplays.git && \
 	cd peerplays && \
 	git submodule update --init --recursive && \
 	cmake -DBOOST_ROOT="$BOOST_ROOT" -DCMAKE_BUILD_TYPE=Release . && \
