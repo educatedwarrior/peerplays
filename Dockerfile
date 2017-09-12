@@ -104,7 +104,7 @@ RUN \
 RUN mkdir -p "$DATADIR"
 RUN touch genesis-test.json
 RUN touch genesis.json
-COPY genesis-test.json genesis.json /
+COPY genesis.json /
 COPY /docker/prod_config.ini /
 COPY /docker/test_config.ini /
 COPY /docker/entrypoint.sh /sbin
