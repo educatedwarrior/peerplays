@@ -9,7 +9,7 @@ MAINTAINER educatedwarrior
 #test or prod for ENVIRONMENT
 ENV NODE_TYPE witness
 ENV ENVIRONMENT test
-ENV LANG=en_US.UTF-8
+ENV LANG en_US.UTF-8
 ENV WORKDIR /opt/peerplays/bin
 ENV DATADIR /opt/peerplays/bin/witness_node_data_dir
 ENV LOGDIR /opt/peerplays/bin/witness_node_data_dir/logs
