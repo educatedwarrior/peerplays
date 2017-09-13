@@ -1,34 +1,14 @@
 # This will build the witness_node in a docker image. Make sure you've already
 # checked out the submodules before building.
 
-#FROM l3iggs/archlinux:latest
-#MAINTAINER Nathan Hourt <nathan@followmyvote.com>#
-
-#RUN pacman -Syu --noconfirm gcc make autoconf automake cmake ninja boost libtool git#
-
-#ADD . /bitshares-2
-#WORKDIR /bitshares-2
-#RUN cmake -G Ninja -DCMAKE_BUILD_TYPE=Release .
-#RUN ninja witness_node || ninja -j 1 witness_node#
-
-#RUN mkdir /data_dir
-#ADD docker/default_config.ini /default_config.ini
-#ADD docker/launch /launch
-#RUN chmod a+x /launch
-#VOLUME /data_dir#
-
-#EXPOSE 8090 9090#
-
-#ENTRYPOINT ["/launch"]
-
 FROM educatedwarrior/invictus_image:1.59
 MAINTAINER educatedwarrior 
 
 # Configuration variables
 #witness or seed for NODE_TYPE`
 #test or prod for ENVIRONMENT
-ENV NODE_TYPE=witness
-ENV ENVIRONMENT=test
+ENV NODE_TYPE witness
+ENV ENVIRONMENT test
 ENV LANG=en_US.UTF-8
 ENV WORKDIR /opt/peerplays/bin
 ENV DATADIR /opt/peerplays/bin/witness_node_data_dir
