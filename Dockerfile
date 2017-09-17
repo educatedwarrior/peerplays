@@ -35,12 +35,12 @@ LABEL org.freenas.interactive="false"       \
       org.freenas.settings="[                   \
           {                         \
               \"env\": \"NODE_TYPE\",                  \
-              \"descr\": \"test or prod.  Default value test\",       \
+              \"descr\": \"witness or seed.  Default value witness\",       \
               \"optional\": false                \
           },                            \
           {                         \
               \"env\": \"TEST_SEED\",                \
-              \"descr\": \"Default value 192.34.60.157:29092\",          \
+              \"descr\": \"Default value seed.ppytest.blckchnd.com:7778\",          \
               \"optional\": true                \
           },                            \
           {                         \

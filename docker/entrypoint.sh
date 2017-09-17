@@ -7,9 +7,9 @@ if [ -f "${DATADIR}/config.ini" ]
     echo "Node config.ini found"
   else
   	echo "Node config.ini not found.  Copying default version"
-  	if [ ${ENVIRONMENT} = "test"] 
+  	if [ "${ENVIRONMENT}" = "test"] 
   	  then
-   		cp /test_config.ini ${DATADIR}/config.ini
+ 	    cp /test_config.ini ${DATADIR}/config.ini
    	  else
    	    cp /prod_config.ini ${DATADIR}/config.ini 
    	fi
