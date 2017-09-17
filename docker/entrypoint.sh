@@ -7,7 +7,7 @@ if [ -f "${DATADIR}/config.ini" ]
     echo "Node config.ini found"
   else
   	echo "Node config.ini not found.  Copying default version"
-  	if [ "${ENVIRONMENT}" = "test"] 
+  	if [ "${ENVIRONMENT}" = "test" ] 
   	  then
  	    cp /test_config.ini ${DATADIR}/config.ini
    	  else
@@ -21,7 +21,7 @@ if [ -f "/usr/bin/witness_node"]
     echo "Node binary found"
   else
     echo "Node binary not found.  Making binary available"
-    if [ "${ENVIRONMENT}" = "test"]
+    if [ "${ENVIRONMENT}" = "test" ]
       then
       	cp /tmp/testbuild/peerplays/programs/witness_node/witness_node /usr/bin/witness_node
       else
@@ -35,7 +35,7 @@ if [ -f "/usr/bin/cli_wallet"]
     echo "Wallet binary found"
   else
     echo "Wallet binary not found. Making binary available"
-    if [ "${ENVIRONMENT}" = "test"]
+    if [ "${ENVIRONMENT}" = "test" ]
       then
     	cp /tmp/testbuild/peerplays/programs/cli_wallet/cli_wallet /usr/bin/cli_wallet
       else
@@ -67,6 +67,3 @@ if [ "${ENVIRONMENT}" = "prod" ]; then
 		-d ${DATADIR}/ 
 	fi
 fi
-
-
-
