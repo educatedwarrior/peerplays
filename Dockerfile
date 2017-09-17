@@ -56,7 +56,7 @@ RUN \
   git clone https://github.com/pbsa/peerplays.git && \
 	cd peerplays && \
 	git submodule update --init --recursive && \
-	cmake -DBOOST_ROOT="$BOOST_ROOT" -DCMAKE_BUILD_TYPE=Release . && \
+	cmake -j 8 -DBOOST_ROOT="$BOOST_ROOT" -DCMAKE_BUILD_TYPE=Release . && \
 	make witness_node cli_wallet
 
 #Build blockchain source for TEST 
@@ -66,7 +66,7 @@ RUN \
   git clone -b testnet-draft https://github.com/ppytest/peerplays.git && \
 	cd peerplays && \
 	git submodule update --init --recursive && \
-	cmake -DBOOST_ROOT="$BOOST_ROOT" -DCMAKE_BUILD_TYPE=Release . && \
+	cmake -j 8 -DBOOST_ROOT="$BOOST_ROOT" -DCMAKE_BUILD_TYPE=Release . && \
 	make witness_node cli_wallet
 
 
